@@ -4,8 +4,9 @@
 
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-rgb: 236, 227, 210;
+  --background-color: #f8f8f8;
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -13,18 +14,39 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    
   }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  color: rgba(70, 73, 77, 1);
+  background: rgb(var(--background-rgb));
+  font-family: Roboto;
 }
+
+h1 {
+  font-family: Roboto;
+  font-size: 64px;
+  color: rgba(58, 66, 76, 1);
+}
+
+h2 {
+  font-family: Roboto;
+  font-size: 40px;
+  color: rgba(70, 73, 77, 1);
+  ;
+}
+
+.rounded-rectangle {
+
+  width: 70em; 
+  height: 40em; 
+  background-color: rgba(222, 193, 168, 1);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); 
+  border-radius: 75px;
+  align-self: center;
+}
+
 
 @layer utilities {
   .text-balance {
