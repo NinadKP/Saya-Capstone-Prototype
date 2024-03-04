@@ -43,11 +43,12 @@ const handler = NextAuth({
           if (sessionUser) {
             session.user.id = sessionUser._id.toString();
           }
+          session.accessToken = token.token.account.access_token;
         } catch (error) {
           console.error("Error fetching user from database:", error);
         }
     
-        session.accessToken = token.token.account.access_token;
+        
       }
       
 

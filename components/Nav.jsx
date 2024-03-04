@@ -71,6 +71,7 @@ const Nav = () => {
             </button>
 
             <Link  href='/' className="flex justify-between"  >
+            {localsession?.user?.image && ( <>
               <Image
                 src={localsession?.user.image}
                 width={37}
@@ -79,6 +80,8 @@ const Nav = () => {
                 alt='profile'
               />
               <h2 className="text-lg">{localsession?.user.name}</h2>
+              </>
+              )}
             </Link>
           </div>
         }
