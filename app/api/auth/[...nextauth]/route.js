@@ -34,19 +34,21 @@ const handler = NextAuth({
 
     async session({ session, token, user }) {
 
-     if (typeof token !== typeof undefined)
-      {
+      if (typeof token !== typeof undefined) {
         session.token = token.token;
+        session.user = token.token.user;
+    
+        try {
+          const sessionUser = await User.findOne({ email: session.user.email });
+          if (sessionUser) {
+            session.user.id = sessionUser._id.toString();
+          }
+        } catch (error) {
+          console.error("Error fetching user from database:", error);
+        }
+    
+        session.accessToken = token.token.account.access_token;
       }
-      session.user = token.token.user
-      const sessionUser = await User.findOne({ email: session.user.email });
-      // console.log(sessionUser);
-      if (sessionUser){
-        session.user.id = sessionUser._id.toString();
-      }
-      
-      session.accessToken = token.token.account.access_token;
-      // console.log(session);
       
 
       return session;

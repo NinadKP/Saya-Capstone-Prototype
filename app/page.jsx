@@ -61,7 +61,7 @@ export default function Home() {
         charcount += countCharacters(selectedEvent.summary, selectedEvent.description);
       }
     }
-    setSelectedChars(50000 - charcount);
+    setSelectedChars(640000 - charcount);
   }, [selectedEvents, events]);
 
   const handleFetchCalendarData = async () => {
@@ -76,13 +76,13 @@ export default function Home() {
       const updatedSession = { ...localsession, calendars: calendarData };
       localStorage.setItem("userSession", JSON.stringify(updatedSession));
       setLocal();
-      console.log("Calendars:", calendarData);
+      // console.log("Calendars:", calendarData);
     }
   };
 
   const fetchEvents = async () => {
     const userSession = JSON.parse(localStorage.getItem("userSession"));
-    console.log("Selected Calendars:", selectedCalendars);
+    // console.log("Selected Calendars:", selectedCalendars);
     const queryParams = new URLSearchParams({
       calendars: selectedCalendars,
       token: JSON.stringify(userSession.accessToken),
@@ -110,21 +110,21 @@ export default function Home() {
     });
     const data = await response.json();
 
-    console.log("data.result.content", data.result.content);
+    // console.log("data.result.content", data.result.content);
     const reportData = data.result.content;
     setReport(reportData);
-    console.log(report);
+    // console.log(report);
   };
 
   const fetchContext = async () => {
-    console.log("Selected Events:", selectedEvents);
+    // console.log("Selected Events:", selectedEvents);
 
     const scontext = selectedEvents.map((eventId) =>
       events.find((event) => event.id === eventId)
     ).filter(Boolean);
-    console.log(scontext);
+    // console.log(scontext);
     setContext(scontext);
-    console.log(context);
+    // console.log(context);
     const updatedSession = { ...localsession, context: scontext };
     localStorage.setItem("userSession", JSON.stringify(updatedSession));
     setLocal();
@@ -176,7 +176,7 @@ export default function Home() {
             <div>
               {localsession ? (
                 <>
-                  <div className="overflow-y-auto border border-gray-300 p-5 bg-white h-dvh w-4.5">
+                  <div className="overflow-y-auto h-[35rem] w-[65rem]">
                     <div dangerouslySetInnerHTML={{ __html: report }} />
                   </div>
                   <button className="border border-gray-300 rounded-lg bg-white p-4 shadow-md hover:shadow-lg" onClick={generateReport}>
@@ -311,6 +311,7 @@ export default function Home() {
                                 </div>
                               ) : (
                                 <>
+
                                   {providers &&
                                     Object.values(providers).map((provider) => (
                                       <button

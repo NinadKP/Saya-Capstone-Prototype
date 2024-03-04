@@ -70,7 +70,7 @@ const Nav = () => {
               <h2 className="text-2xl">Sign Out</h2>
             </button>
 
-            <Link className="flex justify-between" >
+            <Link  href='/' className="flex justify-between"  >
               <Image
                 src={localsession?.user.image}
                 width={37}

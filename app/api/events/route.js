@@ -30,7 +30,7 @@ export async function GET(request) {
     const eventsResponse = await calendar.events.list({
       calendarId: calendarId,
       timeMin: new Date().toISOString(), // Set the start time to the current date
-      maxResults: 30, // You can adjust the number of events to fetch
+      maxResults: 100, // You can adjust the number of events to fetch
       singleEvents: true,
       orderBy: 'startTime',
     });

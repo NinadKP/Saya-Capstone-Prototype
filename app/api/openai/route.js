@@ -11,8 +11,7 @@ export async function POST(request) {
   console.log(reviewPrompt(body.data));
 
     const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0125",
-    // "response_format": {"type": "json_object"},
+    model: "gpt-4-0125-preview",
     messages: [{"role": "user", "content": reviewPrompt(body.data)}],
   });
 
@@ -31,11 +30,11 @@ function reviewPrompt(events) {
      You take a JSON input containing a list of events with summaries and descriptions providing context about the tasks. 
      The assistant should generate a detailed report that breaks down the tasks into smaller sub-tasks, offers context-aware tips for completing each task, and suggests relevant resources to aid in task completion.
      The output report should include the following for each task:
-      Task breakdown: Identify smaller sub-tasks or steps necessary to complete the main task.
-      Context-aware tips: Offer productivity tips tailored to the specific task based on its summary and description. These tips should consider factors such as time constraints, complexity, and resources required.
-      Resource suggestions: Recommend relevant tools, articles, or materials that can assist in completing the task effectively.
-     Additionally, the report should conclude with some general productivity tips based on the overall schedule and tasks listed in the JSON input.
-      Output in the format of a nicely formatted HTML snippet report that is already within a body tag.
+      Task breakdown: Identify smaller sub-tasks and steps necessary to complete the main task. Estimate the time taken for each sub-task.
+      Context-aware tips: Analyze the summary and description of the task, then suggest detailed tips to complete the task. 
+      Resource suggestions: Recommend relevant tools, articles, or materials that can assist in completing the task effectively. Recommend books, youtube videos and other links that might assist with the task.
+     Additionally, the report should conclude with some specific productivity tips based on the overall schedule and tasks listed in the JSON input.
+      Output in the format of a nicely formatted HTML snippet report that is already within a body tag. Nice formatted involves using bold, italics and other font styles properly. It also involves using numbered and unordered bullet lists properly.
     ]
   
   analyze_context(schedule_input)
