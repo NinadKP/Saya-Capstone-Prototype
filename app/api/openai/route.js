@@ -11,7 +11,7 @@ export async function POST(request) {
   console.log(reviewPrompt(body.data));
 
     const completion = await openai.chat.completions.create({
-    model: "gpt-4-0125-preview",
+    model: "gpt-3.5-turbo-0125",
     messages: [{"role": "user", "content": reviewPrompt(body.data)}],
   });
 
