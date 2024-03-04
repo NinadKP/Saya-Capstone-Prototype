@@ -4,14 +4,14 @@ import OpenAI from 'openai';
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY 
 });
-
+export const maxDuration = 300;
 
 export async function POST(request) {
   const body = await request.json()
   console.log(reviewPrompt(body.data));
 
     const completion = await openai.chat.completions.create({
-    model: "gpt-3.5-turbo-0125",
+    model: "gpt-3.5-turbo-0125", // model: "gpt-4-0125-preview",
     messages: [{"role": "user", "content": reviewPrompt(body.data)}],
   });
 

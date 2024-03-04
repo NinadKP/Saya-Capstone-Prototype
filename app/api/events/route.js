@@ -2,6 +2,8 @@ import {NextRequest, NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 import { google } from 'googleapis';
 
+export const maxDuration = 300;
+
 export async function GET(request) {
   try {
     const token = request.nextUrl.searchParams.get('token');
